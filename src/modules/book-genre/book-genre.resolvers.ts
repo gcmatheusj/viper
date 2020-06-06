@@ -28,4 +28,3 @@ export default class BookGenreResolver {
     return this.repoService.bookGenreRepository.save(bookGenre);
   }
 }
-

@@ -25,15 +25,15 @@ class GenreResolver {
     return this.repoService.genreRepository.save(genre);
   }
 
-  @ResolveProperty()
-  public async book(@Parent() parent): Promise<Book[]> {
-    const bookGenres = await this.repoService.bookGenreRepository.find({where:
-    {genreId: parent.id}, relations: ['book']});
-    const books: Book[] = [];
-    bookGenres.forEach(async bookGenre => books.push(await
-      bookGenre.book));
-    return books;
-  }
+  // @ResolveProperty()
+  // public async book(@Parent() parent): Promise<Book[]> {
+  //   const bookGenres = await this.repoService.bookGenreRepository.find({where:
+  //   {genreId: parent.id}, relations: ['book']});
+  //   const books: Book[] = [];
+  //   bookGenres.forEach(async bookGenre => books.push(await
+  //     bookGenre.book));
+  //   return books;
+  // }
 }
 
 export default GenreResolver;

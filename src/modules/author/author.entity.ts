@@ -11,8 +11,9 @@ import { Field, ObjectType } from 'type-graphql';
 import Book from '../book/book.entity';
 
 @ObjectType()
-@Entity()
+@Entity({ name: 'authors'})
 export default class Author {
+  @Field()
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
@@ -28,7 +29,6 @@ export default class Author {
   @UpdateDateColumn({ name: 'updated_at' })
   updatedAt: Date;
 
-  @Field()
   @OneToMany(() => Book, book => book.authorConnection)
   bookConnection: Promise<Book[]>;
 }
