@@ -10,8 +10,8 @@ import {
 } from 'typeorm';
 import { Field, ObjectType } from 'type-graphql';
 
-import BookGenre from '../../book-genre/entity/book-genre';
-import Author from '../../author/entity/author';
+import BookGenre from '../book-genre/book-genre.entity';
+import Author from '../author/author.entity';
 
 @ObjectType()
 @Entity({ name: 'books' })

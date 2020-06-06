@@ -5,7 +5,7 @@
   "username": "postgres",
   "password": "docker",
   "database": "viper",
-  "entities": ["./src/modules/**/entity/*.ts"],
+  "entities": ["./src/modules/**/*.entity.ts"],
   "migrations": [
     "./src/database/migrations/*.ts"
   ],

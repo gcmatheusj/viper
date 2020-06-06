@@ -2,10 +2,10 @@ import { Injectable } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 
-import Author from '../modules/author/entity/author';
-import Book from '../modules/book/entity/book';
-import Genre from '../modules/genre/entity/genre';
-import BookGenre from '../modules/book-genre/entity/book-genre';
+import Author from '../modules/author/author.entity';
+import Book from '../modules/book/book.entity';
+import Genre from '../modules/genre/genre.entity';
+import BookGenre from '../modules/book-genre/book-genre.entity';
 
 @Injectable()
 class RepositoryService {

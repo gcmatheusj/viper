@@ -8,24 +8,31 @@ import {
   ManyToOne,
   JoinColumn,
 } from 'typeorm';
+import { Field, ObjectType } from 'type-graphql';
 
-import Genre from '../../genre/entity/genre';
-import Book from '../../book/entity/book';
+import Genre from '../genre/genre.entity';
+import Book from '../book/book.entity';
 
+@ObjectType()
 @Entity()
 export default class BookGenre {
+  @Field()
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
+  @Field()
   @PrimaryColumn({ name: 'book_id' })
   bookId: string;
 
+  @Field()
   @PrimaryColumn({ name: 'genre_id' })
   genreId: string;
 
+  @Field()
   @CreateDateColumn({ name: 'created_at' })
   createdAt: Date;
 
+  @Field()
   @UpdateDateColumn({ name: 'updated_at' })
   updatedAt: Date;
 

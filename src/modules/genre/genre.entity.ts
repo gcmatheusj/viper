@@ -7,7 +7,7 @@ import {
   OneToMany,
 } from 'typeorm';
 
-import BookGenre from '../../book-genre/entity/book-genre';
+import BookGenre from '../book-genre/book-genre.entity';
 
 @Entity()
 export default class Genre {
