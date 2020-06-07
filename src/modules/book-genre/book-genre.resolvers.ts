@@ -10,12 +10,12 @@ export default class BookGenreResolver {
   constructor(private readonly repoService: RepoService) {}
 
   @Query(() => [BookGenre])
-  public async bookGenres(): Promise<BookGenre[]> {
+  public async getBookGenres(): Promise<BookGenre[]> {
     return this.repoService.bookGenreRepository.find();
   }
 
   @Query(() => BookGenre)
-  public async bookGenre(@Arg('id') id: string): Promise<BookGenre> {
+  public async getBookGenre(@Arg('id') id: string): Promise<BookGenre> {
     return this.repoService.bookGenreRepository.findOne(id);
   }
 

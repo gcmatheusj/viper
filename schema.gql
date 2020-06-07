@@ -24,7 +24,7 @@ type Book {
 }
 
 input BookAuthorConnectInput {
-  id: Float!
+  id: String!
 }
 
 input BookAuthorInput {
@@ -77,8 +77,8 @@ type Query {
   getAuthor(id: String!): Author
   getBooks: [Book!]!
   getBook(id: String!): Book
-  genres: [Genre!]!
-  genre(id: String!): Genre
-  bookGenres: [BookGenre!]!
-  bookGenre(id: String!): BookGenre!
+  getGenres: [Genre!]!
+  getGenre(id: String!): Genre
+  getBookGenres: [BookGenre!]!
+  getBookGenre(id: String!): BookGenre!
 }

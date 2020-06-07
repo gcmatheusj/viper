@@ -9,12 +9,12 @@ class GenreResolver {
   constructor(private readonly repoService: RepoService) {}
 
   @Query(() => [Genre])
-  public async genres(): Promise<Genre[]> {
+  public async getGenres(): Promise<Genre[]> {
     return this.repoService.genreRepository.find();
   }
 
   @Query(() => Genre, {nullable: true})
-  public async genre(@Args('id') id: string): Promise<Genre> {
+  public async getGenre(@Args('id') id: string): Promise<Genre> {
     return this.repoService.genreRepository.findOne(id);
   }
 

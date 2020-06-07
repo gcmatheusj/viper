@@ -21,16 +21,21 @@ export default class BookResolver {
   }
 
   @Mutation(() => Book)
-  public async createBook(
-    @Args('data') input: BookInput,
-  ): Promise<Book> {
-    const book = this.repositoryService
-      .bookRepository
-      .create({ title: input.title });
-
+  public async createBook(@Args('data') input: BookInput): Promise<Book> {
+    const book = new Book();
+    book.title = input.title;
+    if (input.author.connect) {
+      book.authorId = input.author.connect.id;
+    } else {
+      if (!input.author.create) {
+        throw new Error('Either pass a valid author id for the book or provide a new author using the create input option');
+      }
+      const authorToSave = this.repositoryService.authorRepository.create({name: input.author.create.name});
+      const savedAuthor = await this.repositoryService.authorRepository.save(authorToSave);
+      book.authorId = savedAuthor.id;
+    }
     return this.repositoryService.bookRepository.save(book);
   }
-
   @ResolveProperty()
   public async author(
     @Parent() parent: Book,
