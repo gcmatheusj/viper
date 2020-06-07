@@ -5,6 +5,8 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { AppService } from './app.service';
 import RepositoryModule from './repository/repository.module';
 
+import { genreBooksLoader } from './database/loaders/books.loader';
+
 import AuthorResolver from './modules/author/author.resolvers';
 import BookResolver from './modules/book/book.resolvers';
 import GenreResolver from './modules/genre/genre.resolvers';
@@ -25,6 +27,9 @@ const graphQLImports = [
     GraphQLModule.forRoot({
       autoSchemaFile: 'schema.gql',
       playground: true,
+      context: {
+        genreBooksLoader: genreBooksLoader(),
+      },
     }),
   ],
   providers: [AppService],

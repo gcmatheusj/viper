@@ -1,4 +1,7 @@
-import { Args, Mutation, Parent, Query, ResolveProperty, Resolver } from '@nestjs/graphql';
+import { Args, Context, Mutation, Parent, Query, ResolveProperty, Resolver } from '@nestjs/graphql';
+
+import { IGraphQLContext } from '../../types/graphql.types';
+
 import RepoService from '../../repository/repository.service';
 import Book from '../book/book.entity';
 import Genre from '../genre/genre.entity';
@@ -25,15 +28,13 @@ class GenreResolver {
     return this.repoService.genreRepository.save(genre);
   }
 
-  // @ResolveProperty()
-  // public async book(@Parent() parent): Promise<Book[]> {
-  //   const bookGenres = await this.repoService.bookGenreRepository.find({where:
-  //   {genreId: parent.id}, relations: ['book']});
-  //   const books: Book[] = [];
-  //   bookGenres.forEach(async bookGenre => books.push(await
-  //     bookGenre.book));
-  //   return books;
-  // }
+  @ResolveProperty()
+  public async book(
+    @Parent() parent: Genre,
+    @Context() { genreBooksLoader }: IGraphQLContext,
+  ): Promise<Book[]> {
+    return genreBooksLoader.load(parent.id);
+  }
 }
 
 export default GenreResolver;
